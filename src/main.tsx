@@ -9,11 +9,13 @@ import {
 } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.scss";
+import CatPage from "./pages/CatPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
 			<Route index={true} path="/" element={<HomePage />} />
+			<Route path="/cat/:id" element={<CatPage />} />
 		</Route>,
 	),
 );

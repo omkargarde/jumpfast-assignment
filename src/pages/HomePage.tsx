@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import { Cat } from "../types/catsType";
 
 const HomePage = () => {
@@ -21,7 +22,7 @@ const HomePage = () => {
 	});
 
 	if (isPending) {
-		return <span>Loading...</span>;
+		return <article aria-busy="true" />;
 	}
 
 	if (isError) {
@@ -29,18 +30,21 @@ const HomePage = () => {
 	}
 	console.log(cats);
 	return (
-		<ul className="smol-aspect-ratio-gallery smol-flexbox-grid">
-			{cats.map((cat: Cat) => (
-				<li key={cat.id}>
-					<img
-						className="image-homepage"
-						src={cat.url}
-						alt={cat.breeds[0]}
-						key={cat.id}
-					/>
-				</li>
-			))}
-		</ul>
+		<>
+			<h1 className="">Cats</h1>
+			<div className="smol-aspect-ratio-gallery smol-flexbox-grid">
+				{cats.map((cat: Cat) => (
+					<Link to={`/cat/${cat.id}`} key={cat.id}>
+						<img
+							className="image-homepage"
+							src={cat.url}
+							alt={cat.breeds[0]}
+							key={cat.id}
+						/>
+					</Link>
+				))}
+			</div>
+		</>
 	);
 };
 
